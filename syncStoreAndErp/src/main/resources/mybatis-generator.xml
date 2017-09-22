@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration  
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    
+    <!-- 商城配置文件 -->
+    <properties resource="application-test.properties"/>
+    
+      
+    <context id="oldDB2Tables"    targetRuntime="MyBatis3">
+     <plugin type="com.pugutang.mybatis.page.plugin.MySqlLimitPlugin"/>  
+        <commentGenerator>  
+            <property name="suppressDate" value="true"/>  
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>  
+        <!--数据库链接地址账号密码-->  
+        <jdbcConnection driverClass="${spring.datasource.new.driver-class-name}" 
+	        connectionURL="${spring.datasource.new.url}" 
+	        userId="${spring.datasource.new.username}" password="${spring.datasource.new.password}">  
+        </jdbcConnection>  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>  
+        <!--生成Model类存放位置-->  
+        <javaModelGenerator targetPackage="com.pugutang.spring.boot.entity" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="false"/>  
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>  
+        <!--生成映射文件存放位置-->  
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">  
+            <property name="enableSubPackages" value="false"/>  
+        </sqlMapGenerator>  
+        <!--生成Dao类存放位置-->  
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码  
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象  
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象  
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口  
+        -->  
+        <!-- 老商城生成路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.pugutang.spring.boot.dao.oldDao" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="false"/>  
+        </javaClientGenerator>  
+        <!--生成对应表及类名--> 
+        <!-- 老商城生成表 --> 
+        <table tableName="klx_orders" 
+	        domainObjectName="KlxOrders" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>  
+	     <table tableName="klx_orderrefunds" 
+	        domainObjectName="KlxOrderrefunds" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_orderrefundlogs" 
+	        domainObjectName="KlxOrderrefundlogs" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_orderpay" 
+	        domainObjectName="KlxOrderpay" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_orderoperationlogs" 
+	        domainObjectName="KlxOrderoperationlogs" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_orderitems" 
+	        domainObjectName="KlxOrderitems" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_orderinvoice" 
+	        domainObjectName="KlxOrderinvoice" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_orderexpressdata" 
+	        domainObjectName="KlxOrderexpressdata" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_ordercomplaints" 
+	        domainObjectName="KlxOrdercomplaints" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_ordercomments" 
+	        domainObjectName="KlxOrdercomments" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productvistis" 
+	        domainObjectName="KlxProductvistis" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productshopcategories" 
+	        domainObjectName="KlxProductshopcategories" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productdescriptiontemplates" 
+	        domainObjectName="KlxProductdescriptiontemplates" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productdescriptions_bak" 
+	        domainObjectName="KlxProductdescriptions_bak" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productdescriptions" 
+	        domainObjectName="KlxProductdescriptions" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productconsultations" 
+	        domainObjectName="KlxProductconsultations" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productcommentsimages" 
+	        domainObjectName="KlxProductcommentsimages" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productcomments" 
+	        domainObjectName="KlxProductcomments" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productbrokerage" 
+	        domainObjectName="KlxProductbrokerage" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_productattributes" 
+	        domainObjectName="KlxProductattributes" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_products_bak" 
+	        domainObjectName="KlxProducts_bak" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_prodmid" 
+	        domainObjectName="KlxProdmid" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_proddis" 
+	        domainObjectName="KlxProddis" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="klx_products" 
+	        domainObjectName="KlxProducts" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+    </context> 
+    <context id="newDB2Tables"    targetRuntime="MyBatis3">
+     <plugin type="com.pugutang.mybatis.page.plugin.MySqlLimitPlugin"/>  
+        <commentGenerator>  
+            <property name="suppressDate" value="true"/>  
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>  
+        <!--数据库链接地址账号密码-->  
+        <jdbcConnection driverClass="${mybatis.new.datasource.driver-class-name}" 
+	        connectionURL="${mybatis.new.datasource.url}" 
+	        userId="${mybatis.new.datasource.username}" password="${mybatis.new.datasource.password}">  
+        </jdbcConnection>  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>  
+        <!--生成Model类存放位置-->  
+        <javaModelGenerator targetPackage="com.pugutang.spring.boot.entity" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="false"/>  
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>  
+        <!--生成映射文件存放位置-->  
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">  
+            <property name="enableSubPackages" value="false"/>  
+        </sqlMapGenerator>  
+        <!--生成Dao类存放位置-->  
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码  
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象  
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象  
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口  
+        -->   
+        <!-- 新商城生成路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.pugutang.spring.boot.dao.newDao" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="false"/>  
+        </javaClientGenerator>  
+        <!--生成对应表及类名--> 
+	     <!-- 新商城生成表 -->
+	     <table tableName="szy_back_goods" 
+	        domainObjectName="SzyBackGoods" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_back_order" 
+	        domainObjectName="SzyBackOrder" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_comment" 
+	        domainObjectName="SzyComment" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_delivery" 
+	        domainObjectName="SzyDelivery" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_delivery_goods" 
+	        domainObjectName="SzyDeliveryGoods" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_goods" 
+	        domainObjectName="SzyGoods" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_brand" 
+	        domainObjectName="SzyBrand" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_category" 
+	        domainObjectName="SzyCategory" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_cat_attr" 
+	        domainObjectName="SzyCatAttr" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_cat_spec" 
+	        domainObjectName="SzyCatSpec" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_attribute" 
+	        domainObjectName="SzyAttribute" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_attribute_value" 
+	        domainObjectName="SzyAttributeValue" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+    </context> 
+</generatorConfiguration>  

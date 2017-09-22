@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pugutang.spring.boot.dao.newDao.SzyGoodsSku6Mapper">
+  <resultMap id="BaseResultMap" type="com.pugutang.spring.boot.entity.SzyGoodsSku6">
+    <id column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="sku_barcode" jdbcType="VARCHAR" property="skuBarcode" />
+    <result column="sku_encode" jdbcType="VARCHAR" property="skuEncode" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="cost_price" jdbcType="DECIMAL" property="costPrice" />
+    <result column="member_price" jdbcType="DECIMAL" property="memberPrice" />
+    <result column="wholesale_price" jdbcType="DECIMAL" property="wholesalePrice" />
+    <result column="is_enable" jdbcType="BIT" property="isEnable" />
+    <result column="sku_image" jdbcType="VARCHAR" property="skuImage" />
+    <result column="min_warn" jdbcType="DOUBLE" property="minWarn" />
+    <result column="spec_ids" jdbcType="VARCHAR" property="specIds" />
+    <result column="spec_vids" jdbcType="VARCHAR" property="specVids" />
+    <result column="discount_rate" jdbcType="SMALLINT" property="discountRate" />
+    <result column="goods_number" jdbcType="DOUBLE" property="goodsNumber" />
+    <result column="transit_number" jdbcType="DOUBLE" property="transitNumber" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sku_id, sku_name, goods_id, sku_barcode, sku_encode, goods_price, cost_price, member_price, 
+    wholesale_price, is_enable, sku_image, min_warn, spec_ids, spec_vids, discount_rate, 
+    goods_number, transit_number, admin_id
+  </sql>
+  <select id="selectByExample" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from szy_goods_sku_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from szy_goods_sku_6
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from szy_goods_sku_6
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6Example">
+    delete from szy_goods_sku_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6">
+    insert into szy_goods_sku_6 (sku_id, sku_name, goods_id, 
+      sku_barcode, sku_encode, goods_price, 
+      cost_price, member_price, wholesale_price, 
+      is_enable, sku_image, min_warn, 
+      spec_ids, spec_vids, discount_rate, 
+      goods_number, transit_number, admin_id
+      )
+    values (#{skuId,jdbcType=INTEGER}, #{skuName,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 
+      #{skuBarcode,jdbcType=VARCHAR}, #{skuEncode,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, 
+      #{costPrice,jdbcType=DECIMAL}, #{memberPrice,jdbcType=DECIMAL}, #{wholesalePrice,jdbcType=DECIMAL}, 
+      #{isEnable,jdbcType=BIT}, #{skuImage,jdbcType=VARCHAR}, #{minWarn,jdbcType=DOUBLE}, 
+      #{specIds,jdbcType=VARCHAR}, #{specVids,jdbcType=VARCHAR}, #{discountRate,jdbcType=SMALLINT}, 
+      #{goodsNumber,jdbcType=DOUBLE}, #{transitNumber,jdbcType=DOUBLE}, #{adminId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6">
+    insert into szy_goods_sku_6
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="skuBarcode != null">
+        sku_barcode,
+      </if>
+      <if test="skuEncode != null">
+        sku_encode,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="costPrice != null">
+        cost_price,
+      </if>
+      <if test="memberPrice != null">
+        member_price,
+      </if>
+      <if test="wholesalePrice != null">
+        wholesale_price,
+      </if>
+      <if test="isEnable != null">
+        is_enable,
+      </if>
+      <if test="skuImage != null">
+        sku_image,
+      </if>
+      <if test="minWarn != null">
+        min_warn,
+      </if>
+      <if test="specIds != null">
+        spec_ids,
+      </if>
+      <if test="specVids != null">
+        spec_vids,
+      </if>
+      <if test="discountRate != null">
+        discount_rate,
+      </if>
+      <if test="goodsNumber != null">
+        goods_number,
+      </if>
+      <if test="transitNumber != null">
+        transit_number,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuBarcode != null">
+        #{skuBarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="skuEncode != null">
+        #{skuEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null">
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memberPrice != null">
+        #{memberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="wholesalePrice != null">
+        #{wholesalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isEnable != null">
+        #{isEnable,jdbcType=BIT},
+      </if>
+      <if test="skuImage != null">
+        #{skuImage,jdbcType=VARCHAR},
+      </if>
+      <if test="minWarn != null">
+        #{minWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="specIds != null">
+        #{specIds,jdbcType=VARCHAR},
+      </if>
+      <if test="specVids != null">
+        #{specVids,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRate != null">
+        #{discountRate,jdbcType=SMALLINT},
+      </if>
+      <if test="goodsNumber != null">
+        #{goodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="transitNumber != null">
+        #{transitNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6Example" resultType="java.lang.Long">
+    select count(*) from szy_goods_sku_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update szy_goods_sku_6
+    <set>
+      <if test="record.skuId != null">
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuName != null">
+        sku_name = #{record.skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuBarcode != null">
+        sku_barcode = #{record.skuBarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuEncode != null">
+        sku_encode = #{record.skuEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPrice != null">
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.costPrice != null">
+        cost_price = #{record.costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memberPrice != null">
+        member_price = #{record.memberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wholesalePrice != null">
+        wholesale_price = #{record.wholesalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isEnable != null">
+        is_enable = #{record.isEnable,jdbcType=BIT},
+      </if>
+      <if test="record.skuImage != null">
+        sku_image = #{record.skuImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minWarn != null">
+        min_warn = #{record.minWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.specIds != null">
+        spec_ids = #{record.specIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specVids != null">
+        spec_vids = #{record.specVids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountRate != null">
+        discount_rate = #{record.discountRate,jdbcType=SMALLINT},
+      </if>
+      <if test="record.goodsNumber != null">
+        goods_number = #{record.goodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="record.transitNumber != null">
+        transit_number = #{record.transitNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update szy_goods_sku_6
+    set sku_id = #{record.skuId,jdbcType=INTEGER},
+      sku_name = #{record.skuName,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      sku_barcode = #{record.skuBarcode,jdbcType=VARCHAR},
+      sku_encode = #{record.skuEncode,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      cost_price = #{record.costPrice,jdbcType=DECIMAL},
+      member_price = #{record.memberPrice,jdbcType=DECIMAL},
+      wholesale_price = #{record.wholesalePrice,jdbcType=DECIMAL},
+      is_enable = #{record.isEnable,jdbcType=BIT},
+      sku_image = #{record.skuImage,jdbcType=VARCHAR},
+      min_warn = #{record.minWarn,jdbcType=DOUBLE},
+      spec_ids = #{record.specIds,jdbcType=VARCHAR},
+      spec_vids = #{record.specVids,jdbcType=VARCHAR},
+      discount_rate = #{record.discountRate,jdbcType=SMALLINT},
+      goods_number = #{record.goodsNumber,jdbcType=DOUBLE},
+      transit_number = #{record.transitNumber,jdbcType=DOUBLE},
+      admin_id = #{record.adminId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6">
+    update szy_goods_sku_6
+    <set>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuBarcode != null">
+        sku_barcode = #{skuBarcode,jdbcType=VARCHAR},
+      </if>
+      <if test="skuEncode != null">
+        sku_encode = #{skuEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null">
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memberPrice != null">
+        member_price = #{memberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="wholesalePrice != null">
+        wholesale_price = #{wholesalePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isEnable != null">
+        is_enable = #{isEnable,jdbcType=BIT},
+      </if>
+      <if test="skuImage != null">
+        sku_image = #{skuImage,jdbcType=VARCHAR},
+      </if>
+      <if test="minWarn != null">
+        min_warn = #{minWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="specIds != null">
+        spec_ids = #{specIds,jdbcType=VARCHAR},
+      </if>
+      <if test="specVids != null">
+        spec_vids = #{specVids,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRate != null">
+        discount_rate = #{discountRate,jdbcType=SMALLINT},
+      </if>
+      <if test="goodsNumber != null">
+        goods_number = #{goodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="transitNumber != null">
+        transit_number = #{transitNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6">
+    update szy_goods_sku_6
+    set sku_name = #{skuName,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      sku_barcode = #{skuBarcode,jdbcType=VARCHAR},
+      sku_encode = #{skuEncode,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      member_price = #{memberPrice,jdbcType=DECIMAL},
+      wholesale_price = #{wholesalePrice,jdbcType=DECIMAL},
+      is_enable = #{isEnable,jdbcType=BIT},
+      sku_image = #{skuImage,jdbcType=VARCHAR},
+      min_warn = #{minWarn,jdbcType=DOUBLE},
+      spec_ids = #{specIds,jdbcType=VARCHAR},
+      spec_vids = #{specVids,jdbcType=VARCHAR},
+      discount_rate = #{discountRate,jdbcType=SMALLINT},
+      goods_number = #{goodsNumber,jdbcType=DOUBLE},
+      transit_number = #{transitNumber,jdbcType=DOUBLE},
+      admin_id = #{adminId,jdbcType=INTEGER}
+    where sku_id = #{skuId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectList" parameterType="com.pugutang.spring.boot.entity.SzyGoodsSku6Example" resultMap="BaseResultMap">
+    select * from szy_goods_sku_6 where sku_encode = #{good_sn}
+  </select>
+</mapper>

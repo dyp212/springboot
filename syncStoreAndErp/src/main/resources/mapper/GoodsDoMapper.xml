@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pugutang.spring.boot.dao.oldDao.GoodsDoMapper">
+  <resultMap id="BaseResultMap" type="com.pugutang.spring.boot.entity.GoodsDo">
+    <id column="goods_id" jdbcType="INTEGER" property="goods_id" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goods_name" />
+    <result column="cat_id" jdbcType="INTEGER" property="cat_id" />
+    <result column="cat_id1" jdbcType="INTEGER" property="cat_id1" />
+    <result column="cat_id2" jdbcType="INTEGER" property="cat_id2" />
+    <result column="cat_id3" jdbcType="INTEGER" property="cat_id3" />
+    <result column="shop_id" jdbcType="INTEGER" property="shop_id" />
+    <result column="sku_open" jdbcType="BIT" property="sku_open" />
+    <result column="sku_id" jdbcType="INTEGER" property="sku_id" />
+    <result column="goods_subname" jdbcType="VARCHAR" property="goods_subname" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goods_price" />
+    <result column="market_price" jdbcType="DECIMAL" property="market_price" />
+    <result column="cost_price" jdbcType="DECIMAL" property="cost_price" />
+    <result column="mobile_price" jdbcType="DECIMAL" property="mobile_price" />
+    <result column="give_integral" jdbcType="INTEGER" property="give_integral" />
+    <result column="goods_number" jdbcType="INTEGER" property="goods_number" />
+    <result column="warn_number" jdbcType="INTEGER" property="warn_number" />
+    <result column="goods_sn" jdbcType="VARCHAR" property="goods_sn" />
+    <result column="goods_barcode" jdbcType="VARCHAR" property="goods_barcode" />
+    <result column="goods_image" jdbcType="VARCHAR" property="goods_image" />
+    <result column="brand_id" jdbcType="INTEGER" property="brand_id" />
+    <result column="top_layout_id" jdbcType="INTEGER" property="top_layout_id" />
+    <result column="bottom_layout_id" jdbcType="INTEGER" property="bottom_layout_id" />
+    <result column="packing_layout_id" jdbcType="INTEGER" property="packing_layout_id" />
+    <result column="service_layout_id" jdbcType="INTEGER" property="service_layout_id" />
+    <result column="click_count" jdbcType="INTEGER" property="click_count" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="goods_info" jdbcType="VARCHAR" property="goods_info" />
+    <result column="invoice_type" jdbcType="BIT" property="invoice_type" />
+    <result column="is_repair" jdbcType="BIT" property="is_repair" />
+    <result column="user_discount" jdbcType="BIT" property="user_discount" />
+    <result column="stock_mode" jdbcType="BIT" property="stock_mode" />
+    <result column="comment_num" jdbcType="INTEGER" property="comment_num" />
+    <result column="sale_num" jdbcType="INTEGER" property="sale_num" />
+    <result column="collect_num" jdbcType="INTEGER" property="collect_num" />
+    <result column="goods_audit" jdbcType="BIT" property="goods_audit" />
+    <result column="goods_status" jdbcType="BIT" property="goods_status" />
+    <result column="goods_reason" jdbcType="VARCHAR" property="goods_reason" />
+    <result column="is_delete" jdbcType="BIT" property="is_delete" />
+    <result column="is_virtual" jdbcType="BIT" property="is_virtual" />
+    <result column="is_best" jdbcType="BIT" property="is_best" />
+    <result column="is_new" jdbcType="BIT" property="is_new" />
+    <result column="is_hot" jdbcType="BIT" property="is_hot" />
+    <result column="is_promote" jdbcType="BIT" property="is_promote" />
+    <result column="contract_ids" jdbcType="VARCHAR" property="contract_ids" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplier_id" />
+    <result column="freight_id" jdbcType="INTEGER" property="freight_id" />
+    <result column="goods_volume" jdbcType="VARCHAR" property="goods_volume" />
+    <result column="goods_weight" jdbcType="VARCHAR" property="goods_weight" />
+    <result column="goods_remark" jdbcType="VARCHAR" property="goods_remark" />
+    <result column="goods_sort" jdbcType="INTEGER" property="goods_sort" />
+    <result column="add_time" jdbcType="INTEGER" property="add_time" />
+    <result column="last_time" jdbcType="INTEGER" property="last_time" />
+    <result column="act_id" jdbcType="INTEGER" property="act_id" />
+    <result column="lib_cat_id" jdbcType="INTEGER" property="lib_cat_id" />
+    <result column="goods_id_from_erp" jdbcType="INTEGER" property="goods_id_from_erp" />
+    <result column="sku_id_from_erp" jdbcType="INTEGER" property="sku_id_from_erp" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.pugutang.spring.boot.entity.GoodsDoWithBLOBs">
+    <result column="goods_images" jdbcType="LONGVARCHAR" property="goods_images" />
+    <result column="pc_desc" jdbcType="LONGVARCHAR" property="pc_desc" />
+    <result column="mobile_desc" jdbcType="LONGVARCHAR" property="mobile_desc" />
+    <result column="pc_testing" jdbcType="LONGVARCHAR" property="pc_testing" />
+    <result column="mobile_testing" jdbcType="LONGVARCHAR" property="mobile_testing" />
+    <result column="other_attrs" jdbcType="LONGVARCHAR" property="other_attrs" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, cat_id, cat_id1, cat_id2, cat_id3, shop_id, sku_open, sku_id, 
+    goods_subname, goods_price, market_price, cost_price, mobile_price, give_integral, 
+    goods_number, warn_number, goods_sn, goods_barcode, goods_image, brand_id, top_layout_id, 
+    bottom_layout_id, packing_layout_id, service_layout_id, click_count, keywords, goods_info, 
+    invoice_type, is_repair, user_discount, stock_mode, comment_num, sale_num, collect_num, 
+    goods_audit, goods_status, goods_reason, is_delete, is_virtual, is_best, is_new, 
+    is_hot, is_promote, contract_ids, supplier_id, freight_id, goods_volume, goods_weight, 
+    goods_remark, goods_sort, add_time, last_time, act_id, lib_cat_id, goods_id_from_erp, 
+    sku_id_from_erp
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_images, pc_desc, mobile_desc, pc_testing, mobile_testing, other_attrs
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.pugutang.spring.boot.entity.GoodsDoExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from szy_lib_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.pugutang.spring.boot.entity.GoodsDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from szy_lib_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from szy_lib_goods
+    where goods_id = #{goods_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from szy_lib_goods
+    where goods_id = #{goods_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="goods_id" parameterType="com.pugutang.spring.boot.entity.GoodsDoWithBLOBs">
+    insert into szy_lib_goods (goods_id, goods_name, cat_id, 
+      cat_id1, cat_id2, cat_id3, 
+      shop_id, sku_open, sku_id, 
+      goods_subname, goods_price, market_price, 
+      cost_price, mobile_price, give_integral, 
+      goods_number, warn_number, goods_sn, 
+      goods_barcode, goods_image, brand_id, 
+      top_layout_id, bottom_layout_id, packing_layout_id, 
+      service_layout_id, click_count, keywords, 
+      goods_info, invoice_type, is_repair, 
+      user_discount, stock_mode, comment_num, 
+      sale_num, collect_num, goods_audit, 
+      goods_status, goods_reason, is_delete, 
+      is_virtual, is_best, is_new, is_hot, 
+      is_promote, contract_ids, supplier_id, 
+      freight_id, goods_volume, goods_weight, 
+      goods_remark, goods_sort, add_time, 
+      last_time, act_id, lib_cat_id, 
+      goods_id_from_erp, sku_id_from_erp, goods_images, 
+      pc_desc, mobile_desc, pc_testing, 
+      mobile_testing, other_attrs)
+    values (#{goods_id,jdbcType=INTEGER}, #{goods_name,jdbcType=VARCHAR}, #{cat_id,jdbcType=INTEGER}, 
+      #{cat_id1,jdbcType=INTEGER}, #{cat_id2,jdbcType=INTEGER}, #{cat_id3,jdbcType=INTEGER}, 
+      #{shop_id,jdbcType=INTEGER}, #{sku_open,jdbcType=BIT}, #{sku_id,jdbcType=INTEGER}, 
+      #{goods_subname,jdbcType=VARCHAR}, #{goods_price,jdbcType=DECIMAL}, #{market_price,jdbcType=DECIMAL}, 
+      #{cost_price,jdbcType=DECIMAL}, #{mobile_price,jdbcType=DECIMAL}, #{give_integral,jdbcType=INTEGER}, 
+      #{goods_number,jdbcType=INTEGER}, #{warn_number,jdbcType=INTEGER}, #{goods_sn,jdbcType=VARCHAR}, 
+      #{goods_barcode,jdbcType=VARCHAR}, #{goods_image,jdbcType=VARCHAR}, #{brand_id,jdbcType=INTEGER}, 
+      #{top_layout_id,jdbcType=INTEGER}, #{bottom_layout_id,jdbcType=INTEGER}, #{packing_layout_id,jdbcType=INTEGER}, 
+      #{service_layout_id,jdbcType=INTEGER}, #{click_count,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, 
+      #{goods_info,jdbcType=VARCHAR}, #{invoice_type,jdbcType=BIT}, #{is_repair,jdbcType=BIT}, 
+      #{user_discount,jdbcType=BIT}, #{stock_mode,jdbcType=BIT}, #{comment_num,jdbcType=INTEGER}, 
+      #{sale_num,jdbcType=INTEGER}, #{collect_num,jdbcType=INTEGER}, #{goods_audit,jdbcType=BIT}, 
+      #{goods_status,jdbcType=BIT}, #{goods_reason,jdbcType=VARCHAR}, #{is_delete,jdbcType=BIT}, 
+      #{is_virtual,jdbcType=BIT}, #{is_best,jdbcType=BIT}, #{is_new,jdbcType=BIT}, #{is_hot,jdbcType=BIT}, 
+      #{is_promote,jdbcType=BIT}, #{contract_ids,jdbcType=VARCHAR}, #{supplier_id,jdbcType=INTEGER}, 
+      #{freight_id,jdbcType=INTEGER}, #{goods_volume,jdbcType=VARCHAR}, #{goods_weight,jdbcType=VARCHAR}, 
+      #{goods_remark,jdbcType=VARCHAR}, #{goods_sort,jdbcType=INTEGER}, #{add_time,jdbcType=INTEGER}, 
+      #{last_time,jdbcType=INTEGER}, #{act_id,jdbcType=INTEGER}, #{lib_cat_id,jdbcType=INTEGER}, 
+      #{goods_id_from_erp,jdbcType=INTEGER}, #{sku_id_from_erp,jdbcType=INTEGER}, #{goods_images,jdbcType=LONGVARCHAR}, 
+      #{pc_desc,jdbcType=LONGVARCHAR}, #{mobile_desc,jdbcType=LONGVARCHAR}, #{pc_testing,jdbcType=LONGVARCHAR}, 
+      #{mobile_testing,jdbcType=LONGVARCHAR}, #{other_attrs,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pugutang.spring.boot.entity.GoodsDoWithBLOBs">
+    insert into szy_lib_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goods_id != null">
+        goods_id,
+      </if>
+      <if test="goods_name != null">
+        goods_name,
+      </if>
+      <if test="cat_id != null">
+        cat_id,
+      </if>
+      <if test="cat_id1 != null">
+        cat_id1,
+      </if>
+      <if test="cat_id2 != null">
+        cat_id2,
+      </if>
+      <if test="cat_id3 != null">
+        cat_id3,
+      </if>
+      <if test="shop_id != null">
+        shop_id,
+      </if>
+      <if test="sku_open != null">
+        sku_open,
+      </if>
+      <if test="sku_id != null">
+        sku_id,
+      </if>
+      <if test="goods_subname != null">
+        goods_subname,
+      </if>
+      <if test="goods_price != null">
+        goods_price,
+      </if>
+      <if test="market_price != null">
+        market_price,
+      </if>
+      <if test="cost_price != null">
+        cost_price,
+      </if>
+      <if test="mobile_price != null">
+        mobile_price,
+      </if>
+      <if test="give_integral != null">
+        give_integral,
+      </if>
+      <if test="goods_number != null">
+        goods_number,
+      </if>
+      <if test="warn_number != null">
+        warn_number,
+      </if>
+      <if test="goods_sn != null">
+        goods_sn,
+      </if>
+      <if test="goods_barcode != null">
+        goods_barcode,
+      </if>
+      <if test="goods_image != null">
+        goods_image,
+      </if>
+      <if test="brand_id != null">
+        brand_id,
+      </if>
+      <if test="top_layout_id != null">
+        top_layout_id,
+      </if>
+      <if test="bottom_layout_id != null">
+        bottom_layout_id,
+      </if>
+      <if test="packing_layout_id != null">
+        packing_layout_id,
+      </if>
+      <if test="service_layout_id != null">
+        service_layout_id,
+      </if>
+      <if test="click_count != null">
+        click_count,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="goods_info != null">
+        goods_info,
+      </if>
+      <if test="invoice_type != null">
+        invoice_type,
+      </if>
+      <if test="is_repair != null">
+        is_repair,
+      </if>
+      <if test="user_discount != null">
+        user_discount,
+      </if>
+      <if test="stock_mode != null">
+        stock_mode,
+      </if>
+      <if test="comment_num != null">
+        comment_num,
+      </if>
+      <if test="sale_num != null">
+        sale_num,
+      </if>
+      <if test="collect_num != null">
+        collect_num,
+      </if>
+      <if test="goods_audit != null">
+        goods_audit,
+      </if>
+      <if test="goods_status != null">
+        goods_status,
+      </if>
+      <if test="goods_reason != null">
+        goods_reason,
+      </if>
+      <if test="is_delete != null">
+        is_delete,
+      </if>
+      <if test="is_virtual != null">
+        is_virtual,
+      </if>
+      <if test="is_best != null">
+        is_best,
+      </if>
+      <if test="is_new != null">
+        is_new,
+      </if>
+      <if test="is_hot != null">
+        is_hot,
+      </if>
+      <if test="is_promote != null">
+        is_promote,
+      </if>
+      <if test="contract_ids != null">
+        contract_ids,
+      </if>
+      <if test="supplier_id != null">
+        supplier_id,
+      </if>
+      <if test="freight_id != null">
+        freight_id,
+      </if>
+      <if test="goods_volume != null">
+        goods_volume,
+      </if>
+      <if test="goods_weight != null">
+        goods_weight,
+      </if>
+      <if test="goods_remark != null">
+        goods_remark,
+      </if>
+      <if test="goods_sort != null">
+        goods_sort,
+      </if>
+      <if test="add_time != null">
+        add_time,
+      </if>
+      <if test="last_time != null">
+        last_time,
+      </if>
+      <if test="act_id != null">
+        act_id,
+      </if>
+      <if test="lib_cat_id != null">
+        lib_cat_id,
+      </if>
+      <if test="goods_id_from_erp != null">
+        goods_id_from_erp,
+      </if>
+      <if test="sku_id_from_erp != null">
+        sku_id_from_erp,
+      </if>
+      <if test="goods_images != null">
+        goods_images,
+      </if>
+      <if test="pc_desc != null">
+        pc_desc,
+      </if>
+      <if test="mobile_desc != null">
+        mobile_desc,
+      </if>
+      <if test="pc_testing != null">
+        pc_testing,
+      </if>
+      <if test="mobile_testing != null">
+        mobile_testing,
+      </if>
+      <if test="other_attrs != null">
+        other_attrs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goods_id != null">
+        #{goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_name != null">
+        #{goods_name,jdbcType=VARCHAR},
+      </if>
+      <if test="cat_id != null">
+        #{cat_id,jdbcType=INTEGER},
+      </if>
+      <if test="cat_id1 != null">
+        #{cat_id1,jdbcType=INTEGER},
+      </if>
+      <if test="cat_id2 != null">
+        #{cat_id2,jdbcType=INTEGER},
+      </if>
+      <if test="cat_id3 != null">
+        #{cat_id3,jdbcType=INTEGER},
+      </if>
+      <if test="shop_id != null">
+        #{shop_id,jdbcType=INTEGER},
+      </if>
+      <if test="sku_open != null">
+        #{sku_open,jdbcType=BIT},
+      </if>
+      <if test="sku_id != null">
+        #{sku_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_subname != null">
+        #{goods_subname,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_price != null">
+        #{goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="market_price != null">
+        #{market_price,jdbcType=DECIMAL},
+      </if>
+      <if test="cost_price != null">
+        #{cost_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mobile_price != null">
+        #{mobile_price,jdbcType=DECIMAL},
+      </if>
+      <if test="give_integral != null">
+        #{give_integral,jdbcType=INTEGER},
+      </if>
+      <if test="goods_number != null">
+        #{goods_number,jdbcType=INTEGER},
+      </if>
+      <if test="warn_number != null">
+        #{warn_number,jdbcType=INTEGER},
+      </if>
+      <if test="goods_sn != null">
+        #{goods_sn,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_barcode != null">
+        #{goods_barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_image != null">
+        #{goods_image,jdbcType=VARCHAR},
+      </if>
+      <if test="brand_id != null">
+        #{brand_id,jdbcType=INTEGER},
+      </if>
+      <if test="top_layout_id != null">
+        #{top_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="bottom_layout_id != null">
+        #{bottom_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="packing_layout_id != null">
+        #{packing_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="service_layout_id != null">
+        #{service_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="click_count != null">
+        #{click_count,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_info != null">
+        #{goods_info,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice_type != null">
+        #{invoice_type,jdbcType=BIT},
+      </if>
+      <if test="is_repair != null">
+        #{is_repair,jdbcType=BIT},
+      </if>
+      <if test="user_discount != null">
+        #{user_discount,jdbcType=BIT},
+      </if>
+      <if test="stock_mode != null">
+        #{stock_mode,jdbcType=BIT},
+      </if>
+      <if test="comment_num != null">
+        #{comment_num,jdbcType=INTEGER},
+      </if>
+      <if test="sale_num != null">
+        #{sale_num,jdbcType=INTEGER},
+      </if>
+      <if test="collect_num != null">
+        #{collect_num,jdbcType=INTEGER},
+      </if>
+      <if test="goods_audit != null">
+        #{goods_audit,jdbcType=BIT},
+      </if>
+      <if test="goods_status != null">
+        #{goods_status,jdbcType=BIT},
+      </if>
+      <if test="goods_reason != null">
+        #{goods_reason,jdbcType=VARCHAR},
+      </if>
+      <if test="is_delete != null">
+        #{is_delete,jdbcType=BIT},
+      </if>
+      <if test="is_virtual != null">
+        #{is_virtual,jdbcType=BIT},
+      </if>
+      <if test="is_best != null">
+        #{is_best,jdbcType=BIT},
+      </if>
+      <if test="is_new != null">
+        #{is_new,jdbcType=BIT},
+      </if>
+      <if test="is_hot != null">
+        #{is_hot,jdbcType=BIT},
+      </if>
+      <if test="is_promote != null">
+        #{is_promote,jdbcType=BIT},
+      </if>
+      <if test="contract_ids != null">
+        #{contract_ids,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier_id != null">
+        #{supplier_id,jdbcType=INTEGER},
+      </if>
+      <if test="freight_id != null">
+        #{freight_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_volume != null">
+        #{goods_volume,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_weight != null">
+        #{goods_weight,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_remark != null">
+        #{goods_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_sort != null">
+        #{goods_sort,jdbcType=INTEGER},
+      </if>
+      <if test="add_time != null">
+        #{add_time,jdbcType=INTEGER},
+      </if>
+      <if test="last_time != null">
+        #{last_time,jdbcType=INTEGER},
+      </if>
+      <if test="act_id != null">
+        #{act_id,jdbcType=INTEGER},
+      </if>
+      <if test="lib_cat_id != null">
+        #{lib_cat_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_id_from_erp != null">
+        #{goods_id_from_erp,jdbcType=INTEGER},
+      </if>
+      <if test="sku_id_from_erp != null">
+        #{sku_id_from_erp,jdbcType=INTEGER},
+      </if>
+      <if test="goods_images != null">
+        #{goods_images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pc_desc != null">
+        #{pc_desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobile_desc != null">
+        #{mobile_desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pc_testing != null">
+        #{pc_testing,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobile_testing != null">
+        #{mobile_testing,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="other_attrs != null">
+        #{other_attrs,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pugutang.spring.boot.entity.GoodsDoExample" resultType="java.lang.Long">
+    select count(*) from szy_lib_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update szy_lib_goods
+    <set>
+      <if test="record.goods_id != null">
+        goods_id = #{record.goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_name != null">
+        goods_name = #{record.goods_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cat_id != null">
+        cat_id = #{record.cat_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cat_id1 != null">
+        cat_id1 = #{record.cat_id1,jdbcType=INTEGER},
+      </if>
+      <if test="record.cat_id2 != null">
+        cat_id2 = #{record.cat_id2,jdbcType=INTEGER},
+      </if>
+      <if test="record.cat_id3 != null">
+        cat_id3 = #{record.cat_id3,jdbcType=INTEGER},
+      </if>
+      <if test="record.shop_id != null">
+        shop_id = #{record.shop_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sku_open != null">
+        sku_open = #{record.sku_open,jdbcType=BIT},
+      </if>
+      <if test="record.sku_id != null">
+        sku_id = #{record.sku_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_subname != null">
+        goods_subname = #{record.goods_subname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_price != null">
+        goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.market_price != null">
+        market_price = #{record.market_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cost_price != null">
+        cost_price = #{record.cost_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mobile_price != null">
+        mobile_price = #{record.mobile_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.give_integral != null">
+        give_integral = #{record.give_integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_number != null">
+        goods_number = #{record.goods_number,jdbcType=INTEGER},
+      </if>
+      <if test="record.warn_number != null">
+        warn_number = #{record.warn_number,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_sn != null">
+        goods_sn = #{record.goods_sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_barcode != null">
+        goods_barcode = #{record.goods_barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_image != null">
+        goods_image = #{record.goods_image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand_id != null">
+        brand_id = #{record.brand_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.top_layout_id != null">
+        top_layout_id = #{record.top_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bottom_layout_id != null">
+        bottom_layout_id = #{record.bottom_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.packing_layout_id != null">
+        packing_layout_id = #{record.packing_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.service_layout_id != null">
+        service_layout_id = #{record.service_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.click_count != null">
+        click_count = #{record.click_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.keywords != null">
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_info != null">
+        goods_info = #{record.goods_info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoice_type != null">
+        invoice_type = #{record.invoice_type,jdbcType=BIT},
+      </if>
+      <if test="record.is_repair != null">
+        is_repair = #{record.is_repair,jdbcType=BIT},
+      </if>
+      <if test="record.user_discount != null">
+        user_discount = #{record.user_discount,jdbcType=BIT},
+      </if>
+      <if test="record.stock_mode != null">
+        stock_mode = #{record.stock_mode,jdbcType=BIT},
+      </if>
+      <if test="record.comment_num != null">
+        comment_num = #{record.comment_num,jdbcType=INTEGER},
+      </if>
+      <if test="record.sale_num != null">
+        sale_num = #{record.sale_num,jdbcType=INTEGER},
+      </if>
+      <if test="record.collect_num != null">
+        collect_num = #{record.collect_num,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_audit != null">
+        goods_audit = #{record.goods_audit,jdbcType=BIT},
+      </if>
+      <if test="record.goods_status != null">
+        goods_status = #{record.goods_status,jdbcType=BIT},
+      </if>
+      <if test="record.goods_reason != null">
+        goods_reason = #{record.goods_reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.is_delete != null">
+        is_delete = #{record.is_delete,jdbcType=BIT},
+      </if>
+      <if test="record.is_virtual != null">
+        is_virtual = #{record.is_virtual,jdbcType=BIT},
+      </if>
+      <if test="record.is_best != null">
+        is_best = #{record.is_best,jdbcType=BIT},
+      </if>
+      <if test="record.is_new != null">
+        is_new = #{record.is_new,jdbcType=BIT},
+      </if>
+      <if test="record.is_hot != null">
+        is_hot = #{record.is_hot,jdbcType=BIT},
+      </if>
+      <if test="record.is_promote != null">
+        is_promote = #{record.is_promote,jdbcType=BIT},
+      </if>
+      <if test="record.contract_ids != null">
+        contract_ids = #{record.contract_ids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplier_id != null">
+        supplier_id = #{record.supplier_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.freight_id != null">
+        freight_id = #{record.freight_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_volume != null">
+        goods_volume = #{record.goods_volume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_weight != null">
+        goods_weight = #{record.goods_weight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_remark != null">
+        goods_remark = #{record.goods_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_sort != null">
+        goods_sort = #{record.goods_sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.add_time != null">
+        add_time = #{record.add_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.last_time != null">
+        last_time = #{record.last_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.act_id != null">
+        act_id = #{record.act_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.lib_cat_id != null">
+        lib_cat_id = #{record.lib_cat_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_id_from_erp != null">
+        goods_id_from_erp = #{record.goods_id_from_erp,jdbcType=INTEGER},
+      </if>
+      <if test="record.sku_id_from_erp != null">
+        sku_id_from_erp = #{record.sku_id_from_erp,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_images != null">
+        goods_images = #{record.goods_images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.pc_desc != null">
+        pc_desc = #{record.pc_desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.mobile_desc != null">
+        mobile_desc = #{record.mobile_desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.pc_testing != null">
+        pc_testing = #{record.pc_testing,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.mobile_testing != null">
+        mobile_testing = #{record.mobile_testing,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.other_attrs != null">
+        other_attrs = #{record.other_attrs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update szy_lib_goods
+    set goods_id = #{record.goods_id,jdbcType=INTEGER},
+      goods_name = #{record.goods_name,jdbcType=VARCHAR},
+      cat_id = #{record.cat_id,jdbcType=INTEGER},
+      cat_id1 = #{record.cat_id1,jdbcType=INTEGER},
+      cat_id2 = #{record.cat_id2,jdbcType=INTEGER},
+      cat_id3 = #{record.cat_id3,jdbcType=INTEGER},
+      shop_id = #{record.shop_id,jdbcType=INTEGER},
+      sku_open = #{record.sku_open,jdbcType=BIT},
+      sku_id = #{record.sku_id,jdbcType=INTEGER},
+      goods_subname = #{record.goods_subname,jdbcType=VARCHAR},
+      goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      market_price = #{record.market_price,jdbcType=DECIMAL},
+      cost_price = #{record.cost_price,jdbcType=DECIMAL},
+      mobile_price = #{record.mobile_price,jdbcType=DECIMAL},
+      give_integral = #{record.give_integral,jdbcType=INTEGER},
+      goods_number = #{record.goods_number,jdbcType=INTEGER},
+      warn_number = #{record.warn_number,jdbcType=INTEGER},
+      goods_sn = #{record.goods_sn,jdbcType=VARCHAR},
+      goods_barcode = #{record.goods_barcode,jdbcType=VARCHAR},
+      goods_image = #{record.goods_image,jdbcType=VARCHAR},
+      brand_id = #{record.brand_id,jdbcType=INTEGER},
+      top_layout_id = #{record.top_layout_id,jdbcType=INTEGER},
+      bottom_layout_id = #{record.bottom_layout_id,jdbcType=INTEGER},
+      packing_layout_id = #{record.packing_layout_id,jdbcType=INTEGER},
+      service_layout_id = #{record.service_layout_id,jdbcType=INTEGER},
+      click_count = #{record.click_count,jdbcType=INTEGER},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      goods_info = #{record.goods_info,jdbcType=VARCHAR},
+      invoice_type = #{record.invoice_type,jdbcType=BIT},
+      is_repair = #{record.is_repair,jdbcType=BIT},
+      user_discount = #{record.user_discount,jdbcType=BIT},
+      stock_mode = #{record.stock_mode,jdbcType=BIT},
+      comment_num = #{record.comment_num,jdbcType=INTEGER},
+      sale_num = #{record.sale_num,jdbcType=INTEGER},
+      collect_num = #{record.collect_num,jdbcType=INTEGER},
+      goods_audit = #{record.goods_audit,jdbcType=BIT},
+      goods_status = #{record.goods_status,jdbcType=BIT},
+      goods_reason = #{record.goods_reason,jdbcType=VARCHAR},
+      is_delete = #{record.is_delete,jdbcType=BIT},
+      is_virtual = #{record.is_virtual,jdbcType=BIT},
+      is_best = #{record.is_best,jdbcType=BIT},
+      is_new = #{record.is_new,jdbcType=BIT},
+      is_hot = #{record.is_hot,jdbcType=BIT},
+      is_promote = #{record.is_promote,jdbcType=BIT},
+      contract_ids = #{record.contract_ids,jdbcType=VARCHAR},
+      supplier_id = #{record.supplier_id,jdbcType=INTEGER},
+      freight_id = #{record.freight_id,jdbcType=INTEGER},
+      goods_volume = #{record.goods_volume,jdbcType=VARCHAR},
+      goods_weight = #{record.goods_weight,jdbcType=VARCHAR},
+      goods_remark = #{record.goods_remark,jdbcType=VARCHAR},
+      goods_sort = #{record.goods_sort,jdbcType=INTEGER},
+      add_time = #{record.add_time,jdbcType=INTEGER},
+      last_time = #{record.last_time,jdbcType=INTEGER},
+      act_id = #{record.act_id,jdbcType=INTEGER},
+      lib_cat_id = #{record.lib_cat_id,jdbcType=INTEGER},
+      goods_id_from_erp = #{record.goods_id_from_erp,jdbcType=INTEGER},
+      sku_id_from_erp = #{record.sku_id_from_erp,jdbcType=INTEGER},
+      goods_images = #{record.goods_images,jdbcType=LONGVARCHAR},
+      pc_desc = #{record.pc_desc,jdbcType=LONGVARCHAR},
+      mobile_desc = #{record.mobile_desc,jdbcType=LONGVARCHAR},
+      pc_testing = #{record.pc_testing,jdbcType=LONGVARCHAR},
+      mobile_testing = #{record.mobile_testing,jdbcType=LONGVARCHAR},
+      other_attrs = #{record.other_attrs,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update szy_lib_goods
+    set goods_id = #{record.goods_id,jdbcType=INTEGER},
+      goods_name = #{record.goods_name,jdbcType=VARCHAR},
+      cat_id = #{record.cat_id,jdbcType=INTEGER},
+      cat_id1 = #{record.cat_id1,jdbcType=INTEGER},
+      cat_id2 = #{record.cat_id2,jdbcType=INTEGER},
+      cat_id3 = #{record.cat_id3,jdbcType=INTEGER},
+      shop_id = #{record.shop_id,jdbcType=INTEGER},
+      sku_open = #{record.sku_open,jdbcType=BIT},
+      sku_id = #{record.sku_id,jdbcType=INTEGER},
+      goods_subname = #{record.goods_subname,jdbcType=VARCHAR},
+      goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      market_price = #{record.market_price,jdbcType=DECIMAL},
+      cost_price = #{record.cost_price,jdbcType=DECIMAL},
+      mobile_price = #{record.mobile_price,jdbcType=DECIMAL},
+      give_integral = #{record.give_integral,jdbcType=INTEGER},
+      goods_number = #{record.goods_number,jdbcType=INTEGER},
+      warn_number = #{record.warn_number,jdbcType=INTEGER},
+      goods_sn = #{record.goods_sn,jdbcType=VARCHAR},
+      goods_barcode = #{record.goods_barcode,jdbcType=VARCHAR},
+      goods_image = #{record.goods_image,jdbcType=VARCHAR},
+      brand_id = #{record.brand_id,jdbcType=INTEGER},
+      top_layout_id = #{record.top_layout_id,jdbcType=INTEGER},
+      bottom_layout_id = #{record.bottom_layout_id,jdbcType=INTEGER},
+      packing_layout_id = #{record.packing_layout_id,jdbcType=INTEGER},
+      service_layout_id = #{record.service_layout_id,jdbcType=INTEGER},
+      click_count = #{record.click_count,jdbcType=INTEGER},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      goods_info = #{record.goods_info,jdbcType=VARCHAR},
+      invoice_type = #{record.invoice_type,jdbcType=BIT},
+      is_repair = #{record.is_repair,jdbcType=BIT},
+      user_discount = #{record.user_discount,jdbcType=BIT},
+      stock_mode = #{record.stock_mode,jdbcType=BIT},
+      comment_num = #{record.comment_num,jdbcType=INTEGER},
+      sale_num = #{record.sale_num,jdbcType=INTEGER},
+      collect_num = #{record.collect_num,jdbcType=INTEGER},
+      goods_audit = #{record.goods_audit,jdbcType=BIT},
+      goods_status = #{record.goods_status,jdbcType=BIT},
+      goods_reason = #{record.goods_reason,jdbcType=VARCHAR},
+      is_delete = #{record.is_delete,jdbcType=BIT},
+      is_virtual = #{record.is_virtual,jdbcType=BIT},
+      is_best = #{record.is_best,jdbcType=BIT},
+      is_new = #{record.is_new,jdbcType=BIT},
+      is_hot = #{record.is_hot,jdbcType=BIT},
+      is_promote = #{record.is_promote,jdbcType=BIT},
+      contract_ids = #{record.contract_ids,jdbcType=VARCHAR},
+      supplier_id = #{record.supplier_id,jdbcType=INTEGER},
+      freight_id = #{record.freight_id,jdbcType=INTEGER},
+      goods_volume = #{record.goods_volume,jdbcType=VARCHAR},
+      goods_weight = #{record.goods_weight,jdbcType=VARCHAR},
+      goods_remark = #{record.goods_remark,jdbcType=VARCHAR},
+      goods_sort = #{record.goods_sort,jdbcType=INTEGER},
+      add_time = #{record.add_time,jdbcType=INTEGER},
+      last_time = #{record.last_time,jdbcType=INTEGER},
+      act_id = #{record.act_id,jdbcType=INTEGER},
+      lib_cat_id = #{record.lib_cat_id,jdbcType=INTEGER},
+      goods_id_from_erp = #{record.goods_id_from_erp,jdbcType=INTEGER},
+      sku_id_from_erp = #{record.sku_id_from_erp,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pugutang.spring.boot.entity.GoodsDoWithBLOBs">
+    update szy_lib_goods
+    <set>
+      <if test="goods_name != null">
+        goods_name = #{goods_name,jdbcType=VARCHAR},
+      </if>
+      <if test="cat_id != null">
+        cat_id = #{cat_id,jdbcType=INTEGER},
+      </if>
+      <if test="cat_id1 != null">
+        cat_id1 = #{cat_id1,jdbcType=INTEGER},
+      </if>
+      <if test="cat_id2 != null">
+        cat_id2 = #{cat_id2,jdbcType=INTEGER},
+      </if>
+      <if test="cat_id3 != null">
+        cat_id3 = #{cat_id3,jdbcType=INTEGER},
+      </if>
+      <if test="shop_id != null">
+        shop_id = #{shop_id,jdbcType=INTEGER},
+      </if>
+      <if test="sku_open != null">
+        sku_open = #{sku_open,jdbcType=BIT},
+      </if>
+      <if test="sku_id != null">
+        sku_id = #{sku_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_subname != null">
+        goods_subname = #{goods_subname,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_price != null">
+        goods_price = #{goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="market_price != null">
+        market_price = #{market_price,jdbcType=DECIMAL},
+      </if>
+      <if test="cost_price != null">
+        cost_price = #{cost_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mobile_price != null">
+        mobile_price = #{mobile_price,jdbcType=DECIMAL},
+      </if>
+      <if test="give_integral != null">
+        give_integral = #{give_integral,jdbcType=INTEGER},
+      </if>
+      <if test="goods_number != null">
+        goods_number = #{goods_number,jdbcType=INTEGER},
+      </if>
+      <if test="warn_number != null">
+        warn_number = #{warn_number,jdbcType=INTEGER},
+      </if>
+      <if test="goods_sn != null">
+        goods_sn = #{goods_sn,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_barcode != null">
+        goods_barcode = #{goods_barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_image != null">
+        goods_image = #{goods_image,jdbcType=VARCHAR},
+      </if>
+      <if test="brand_id != null">
+        brand_id = #{brand_id,jdbcType=INTEGER},
+      </if>
+      <if test="top_layout_id != null">
+        top_layout_id = #{top_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="bottom_layout_id != null">
+        bottom_layout_id = #{bottom_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="packing_layout_id != null">
+        packing_layout_id = #{packing_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="service_layout_id != null">
+        service_layout_id = #{service_layout_id,jdbcType=INTEGER},
+      </if>
+      <if test="click_count != null">
+        click_count = #{click_count,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_info != null">
+        goods_info = #{goods_info,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice_type != null">
+        invoice_type = #{invoice_type,jdbcType=BIT},
+      </if>
+      <if test="is_repair != null">
+        is_repair = #{is_repair,jdbcType=BIT},
+      </if>
+      <if test="user_discount != null">
+        user_discount = #{user_discount,jdbcType=BIT},
+      </if>
+      <if test="stock_mode != null">
+        stock_mode = #{stock_mode,jdbcType=BIT},
+      </if>
+      <if test="comment_num != null">
+        comment_num = #{comment_num,jdbcType=INTEGER},
+      </if>
+      <if test="sale_num != null">
+        sale_num = #{sale_num,jdbcType=INTEGER},
+      </if>
+      <if test="collect_num != null">
+        collect_num = #{collect_num,jdbcType=INTEGER},
+      </if>
+      <if test="goods_audit != null">
+        goods_audit = #{goods_audit,jdbcType=BIT},
+      </if>
+      <if test="goods_status != null">
+        goods_status = #{goods_status,jdbcType=BIT},
+      </if>
+      <if test="goods_reason != null">
+        goods_reason = #{goods_reason,jdbcType=VARCHAR},
+      </if>
+      <if test="is_delete != null">
+        is_delete = #{is_delete,jdbcType=BIT},
+      </if>
+      <if test="is_virtual != null">
+        is_virtual = #{is_virtual,jdbcType=BIT},
+      </if>
+      <if test="is_best != null">
+        is_best = #{is_best,jdbcType=BIT},
+      </if>
+      <if test="is_new != null">
+        is_new = #{is_new,jdbcType=BIT},
+      </if>
+      <if test="is_hot != null">
+        is_hot = #{is_hot,jdbcType=BIT},
+      </if>
+      <if test="is_promote != null">
+        is_promote = #{is_promote,jdbcType=BIT},
+      </if>
+      <if test="contract_ids != null">
+        contract_ids = #{contract_ids,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier_id != null">
+        supplier_id = #{supplier_id,jdbcType=INTEGER},
+      </if>
+      <if test="freight_id != null">
+        freight_id = #{freight_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_volume != null">
+        goods_volume = #{goods_volume,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_weight != null">
+        goods_weight = #{goods_weight,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_remark != null">
+        goods_remark = #{goods_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_sort != null">
+        goods_sort = #{goods_sort,jdbcType=INTEGER},
+      </if>
+      <if test="add_time != null">
+        add_time = #{add_time,jdbcType=INTEGER},
+      </if>
+      <if test="last_time != null">
+        last_time = #{last_time,jdbcType=INTEGER},
+      </if>
+      <if test="act_id != null">
+        act_id = #{act_id,jdbcType=INTEGER},
+      </if>
+      <if test="lib_cat_id != null">
+        lib_cat_id = #{lib_cat_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_id_from_erp != null">
+        goods_id_from_erp = #{goods_id_from_erp,jdbcType=INTEGER},
+      </if>
+      <if test="sku_id_from_erp != null">
+        sku_id_from_erp = #{sku_id_from_erp,jdbcType=INTEGER},
+      </if>
+      <if test="goods_images != null">
+        goods_images = #{goods_images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pc_desc != null">
+        pc_desc = #{pc_desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobile_desc != null">
+        mobile_desc = #{mobile_desc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pc_testing != null">
+        pc_testing = #{pc_testing,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mobile_testing != null">
+        mobile_testing = #{mobile_testing,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="other_attrs != null">
+        other_attrs = #{other_attrs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goods_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pugutang.spring.boot.entity.GoodsDoWithBLOBs">
+    update szy_lib_goods
+    set goods_name = #{goods_name,jdbcType=VARCHAR},
+      cat_id = #{cat_id,jdbcType=INTEGER},
+      cat_id1 = #{cat_id1,jdbcType=INTEGER},
+      cat_id2 = #{cat_id2,jdbcType=INTEGER},
+      cat_id3 = #{cat_id3,jdbcType=INTEGER},
+      shop_id = #{shop_id,jdbcType=INTEGER},
+      sku_open = #{sku_open,jdbcType=BIT},
+      sku_id = #{sku_id,jdbcType=INTEGER},
+      goods_subname = #{goods_subname,jdbcType=VARCHAR},
+      goods_price = #{goods_price,jdbcType=DECIMAL},
+      market_price = #{market_price,jdbcType=DECIMAL},
+      cost_price = #{cost_price,jdbcType=DECIMAL},
+      mobile_price = #{mobile_price,jdbcType=DECIMAL},
+      give_integral = #{give_integral,jdbcType=INTEGER},
+      goods_number = #{goods_number,jdbcType=INTEGER},
+      warn_number = #{warn_number,jdbcType=INTEGER},
+      goods_sn = #{goods_sn,jdbcType=VARCHAR},
+      goods_barcode = #{goods_barcode,jdbcType=VARCHAR},
+      goods_image = #{goods_image,jdbcType=VARCHAR},
+      brand_id = #{brand_id,jdbcType=INTEGER},
+      top_layout_id = #{top_layout_id,jdbcType=INTEGER},
+      bottom_layout_id = #{bottom_layout_id,jdbcType=INTEGER},
+      packing_layout_id = #{packing_layout_id,jdbcType=INTEGER},
+      service_layout_id = #{service_layout_id,jdbcType=INTEGER},
+      click_count = #{click_count,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      goods_info = #{goods_info,jdbcType=VARCHAR},
+      invoice_type = #{invoice_type,jdbcType=BIT},
+      is_repair = #{is_repair,jdbcType=BIT},
+      user_discount = #{user_discount,jdbcType=BIT},
+      stock_mode = #{stock_mode,jdbcType=BIT},
+      comment_num = #{comment_num,jdbcType=INTEGER},
+      sale_num = #{sale_num,jdbcType=INTEGER},
+      collect_num = #{collect_num,jdbcType=INTEGER},
+      goods_audit = #{goods_audit,jdbcType=BIT},
+      goods_status = #{goods_status,jdbcType=BIT},
+      goods_reason = #{goods_reason,jdbcType=VARCHAR},
+      is_delete = #{is_delete,jdbcType=BIT},
+      is_virtual = #{is_virtual,jdbcType=BIT},
+      is_best = #{is_best,jdbcType=BIT},
+      is_new = #{is_new,jdbcType=BIT},
+      is_hot = #{is_hot,jdbcType=BIT},
+      is_promote = #{is_promote,jdbcType=BIT},
+      contract_ids = #{contract_ids,jdbcType=VARCHAR},
+      supplier_id = #{supplier_id,jdbcType=INTEGER},
+      freight_id = #{freight_id,jdbcType=INTEGER},
+      goods_volume = #{goods_volume,jdbcType=VARCHAR},
+      goods_weight = #{goods_weight,jdbcType=VARCHAR},
+      goods_remark = #{goods_remark,jdbcType=VARCHAR},
+      goods_sort = #{goods_sort,jdbcType=INTEGER},
+      add_time = #{add_time,jdbcType=INTEGER},
+      last_time = #{last_time,jdbcType=INTEGER},
+      act_id = #{act_id,jdbcType=INTEGER},
+      lib_cat_id = #{lib_cat_id,jdbcType=INTEGER},
+      goods_id_from_erp = #{goods_id_from_erp,jdbcType=INTEGER},
+      sku_id_from_erp = #{sku_id_from_erp,jdbcType=INTEGER},
+      goods_images = #{goods_images,jdbcType=LONGVARCHAR},
+      pc_desc = #{pc_desc,jdbcType=LONGVARCHAR},
+      mobile_desc = #{mobile_desc,jdbcType=LONGVARCHAR},
+      pc_testing = #{pc_testing,jdbcType=LONGVARCHAR},
+      mobile_testing = #{mobile_testing,jdbcType=LONGVARCHAR},
+      other_attrs = #{other_attrs,jdbcType=LONGVARCHAR}
+    where goods_id = #{goods_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pugutang.spring.boot.entity.GoodsDo">
+    update szy_lib_goods
+    set goods_name = #{goods_name,jdbcType=VARCHAR},
+      cat_id = #{cat_id,jdbcType=INTEGER},
+      cat_id1 = #{cat_id1,jdbcType=INTEGER},
+      cat_id2 = #{cat_id2,jdbcType=INTEGER},
+      cat_id3 = #{cat_id3,jdbcType=INTEGER},
+      shop_id = #{shop_id,jdbcType=INTEGER},
+      sku_open = #{sku_open,jdbcType=BIT},
+      sku_id = #{sku_id,jdbcType=INTEGER},
+      goods_subname = #{goods_subname,jdbcType=VARCHAR},
+      goods_price = #{goods_price,jdbcType=DECIMAL},
+      market_price = #{market_price,jdbcType=DECIMAL},
+      cost_price = #{cost_price,jdbcType=DECIMAL},
+      mobile_price = #{mobile_price,jdbcType=DECIMAL},
+      give_integral = #{give_integral,jdbcType=INTEGER},
+      goods_number = #{goods_number,jdbcType=INTEGER},
+      warn_number = #{warn_number,jdbcType=INTEGER},
+      goods_sn = #{goods_sn,jdbcType=VARCHAR},
+      goods_barcode = #{goods_barcode,jdbcType=VARCHAR},
+      goods_image = #{goods_image,jdbcType=VARCHAR},
+      brand_id = #{brand_id,jdbcType=INTEGER},
+      top_layout_id = #{top_layout_id,jdbcType=INTEGER},
+      bottom_layout_id = #{bottom_layout_id,jdbcType=INTEGER},
+      packing_layout_id = #{packing_layout_id,jdbcType=INTEGER},
+      service_layout_id = #{service_layout_id,jdbcType=INTEGER},
+      click_count = #{click_count,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      goods_info = #{goods_info,jdbcType=VARCHAR},
+      invoice_type = #{invoice_type,jdbcType=BIT},
+      is_repair = #{is_repair,jdbcType=BIT},
+      user_discount = #{user_discount,jdbcType=BIT},
+      stock_mode = #{stock_mode,jdbcType=BIT},
+      comment_num = #{comment_num,jdbcType=INTEGER},
+      sale_num = #{sale_num,jdbcType=INTEGER},
+      collect_num = #{collect_num,jdbcType=INTEGER},
+      goods_audit = #{goods_audit,jdbcType=BIT},
+      goods_status = #{goods_status,jdbcType=BIT},
+      goods_reason = #{goods_reason,jdbcType=VARCHAR},
+      is_delete = #{is_delete,jdbcType=BIT},
+      is_virtual = #{is_virtual,jdbcType=BIT},
+      is_best = #{is_best,jdbcType=BIT},
+      is_new = #{is_new,jdbcType=BIT},
+      is_hot = #{is_hot,jdbcType=BIT},
+      is_promote = #{is_promote,jdbcType=BIT},
+      contract_ids = #{contract_ids,jdbcType=VARCHAR},
+      supplier_id = #{supplier_id,jdbcType=INTEGER},
+      freight_id = #{freight_id,jdbcType=INTEGER},
+      goods_volume = #{goods_volume,jdbcType=VARCHAR},
+      goods_weight = #{goods_weight,jdbcType=VARCHAR},
+      goods_remark = #{goods_remark,jdbcType=VARCHAR},
+      goods_sort = #{goods_sort,jdbcType=INTEGER},
+      add_time = #{add_time,jdbcType=INTEGER},
+      last_time = #{last_time,jdbcType=INTEGER},
+      act_id = #{act_id,jdbcType=INTEGER},
+      lib_cat_id = #{lib_cat_id,jdbcType=INTEGER},
+      goods_id_from_erp = #{goods_id_from_erp,jdbcType=INTEGER},
+      sku_id_from_erp = #{sku_id_from_erp,jdbcType=INTEGER}
+    where goods_id = #{goods_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateSkuIdByPrimaryKey"  >
+  update szy_lib_goods set  sku_id = #{sku_id,jdbcType=INTEGER}  where goods_id = #{goods_id,jdbcType=INTEGER}
+  </update>
+</mapper>

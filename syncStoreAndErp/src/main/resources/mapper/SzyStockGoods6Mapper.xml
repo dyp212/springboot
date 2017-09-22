@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pugutang.spring.boot.dao.newDao.SzyStockGoods6Mapper">
+  <resultMap id="BaseResultMap" type="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    <id column="stock_id" jdbcType="INTEGER" property="stockId" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="min_number_warn" jdbcType="DOUBLE" property="minNumberWarn" />
+    <result column="max_number_warn" jdbcType="DOUBLE" property="maxNumberWarn" />
+    <result column="goods_number" jdbcType="DOUBLE" property="goodsNumber" />
+    <result column="first_goods_number" jdbcType="DOUBLE" property="firstGoodsNumber" />
+    <result column="unit_cost" jdbcType="DECIMAL" property="unitCost" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    <result column="stock_remark" jdbcType="LONGVARCHAR" property="stockRemark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    stock_id, store_id, goods_id, sku_id, min_number_warn, max_number_warn, goods_number, 
+    first_goods_number, unit_cost, is_deleted, admin_id
+  </sql>
+  <sql id="Blob_Column_List">
+    stock_remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6Example" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from szy_stock_goods_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from szy_stock_goods_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from szy_stock_goods_6
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from szy_stock_goods_6
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6Example">
+    delete from szy_stock_goods_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    insert into szy_stock_goods_6 (stock_id, store_id, goods_id, 
+      sku_id, min_number_warn, max_number_warn, 
+      goods_number, first_goods_number, unit_cost, 
+      is_deleted, admin_id, stock_remark
+      )
+    values (#{stockId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{skuId,jdbcType=INTEGER}, #{minNumberWarn,jdbcType=DOUBLE}, #{maxNumberWarn,jdbcType=DOUBLE}, 
+      #{goodsNumber,jdbcType=DOUBLE}, #{firstGoodsNumber,jdbcType=DOUBLE}, #{unitCost,jdbcType=DECIMAL}, 
+      #{isDeleted,jdbcType=BIT}, #{adminId,jdbcType=INTEGER}, #{stockRemark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    insert into szy_stock_goods_6
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stockId != null">
+        stock_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="minNumberWarn != null">
+        min_number_warn,
+      </if>
+      <if test="maxNumberWarn != null">
+        max_number_warn,
+      </if>
+      <if test="goodsNumber != null">
+        goods_number,
+      </if>
+      <if test="firstGoodsNumber != null">
+        first_goods_number,
+      </if>
+      <if test="unitCost != null">
+        unit_cost,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="stockRemark != null">
+        stock_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stockId != null">
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="minNumberWarn != null">
+        #{minNumberWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="maxNumberWarn != null">
+        #{maxNumberWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNumber != null">
+        #{goodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="firstGoodsNumber != null">
+        #{firstGoodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="unitCost != null">
+        #{unitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="stockRemark != null">
+        #{stockRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6Example" resultType="java.lang.Long">
+    select count(*) from szy_stock_goods_6
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update szy_stock_goods_6
+    <set>
+      <if test="record.stockId != null">
+        stock_id = #{record.stockId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null">
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.minNumberWarn != null">
+        min_number_warn = #{record.minNumberWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maxNumberWarn != null">
+        max_number_warn = #{record.maxNumberWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsNumber != null">
+        goods_number = #{record.goodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="record.firstGoodsNumber != null">
+        first_goods_number = #{record.firstGoodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unitCost != null">
+        unit_cost = #{record.unitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isDeleted != null">
+        is_deleted = #{record.isDeleted,jdbcType=BIT},
+      </if>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stockRemark != null">
+        stock_remark = #{record.stockRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update szy_stock_goods_6
+    set stock_id = #{record.stockId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      sku_id = #{record.skuId,jdbcType=INTEGER},
+      min_number_warn = #{record.minNumberWarn,jdbcType=DOUBLE},
+      max_number_warn = #{record.maxNumberWarn,jdbcType=DOUBLE},
+      goods_number = #{record.goodsNumber,jdbcType=DOUBLE},
+      first_goods_number = #{record.firstGoodsNumber,jdbcType=DOUBLE},
+      unit_cost = #{record.unitCost,jdbcType=DECIMAL},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      admin_id = #{record.adminId,jdbcType=INTEGER},
+      stock_remark = #{record.stockRemark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update szy_stock_goods_6
+    set stock_id = #{record.stockId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      sku_id = #{record.skuId,jdbcType=INTEGER},
+      min_number_warn = #{record.minNumberWarn,jdbcType=DOUBLE},
+      max_number_warn = #{record.maxNumberWarn,jdbcType=DOUBLE},
+      goods_number = #{record.goodsNumber,jdbcType=DOUBLE},
+      first_goods_number = #{record.firstGoodsNumber,jdbcType=DOUBLE},
+      unit_cost = #{record.unitCost,jdbcType=DECIMAL},
+      is_deleted = #{record.isDeleted,jdbcType=BIT},
+      admin_id = #{record.adminId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    update szy_stock_goods_6
+    <set>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="minNumberWarn != null">
+        min_number_warn = #{minNumberWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="maxNumberWarn != null">
+        max_number_warn = #{maxNumberWarn,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNumber != null">
+        goods_number = #{goodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="firstGoodsNumber != null">
+        first_goods_number = #{firstGoodsNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="unitCost != null">
+        unit_cost = #{unitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="stockRemark != null">
+        stock_remark = #{stockRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    update szy_stock_goods_6
+    set store_id = #{storeId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      min_number_warn = #{minNumberWarn,jdbcType=DOUBLE},
+      max_number_warn = #{maxNumberWarn,jdbcType=DOUBLE},
+      goods_number = #{goodsNumber,jdbcType=DOUBLE},
+      first_goods_number = #{firstGoodsNumber,jdbcType=DOUBLE},
+      unit_cost = #{unitCost,jdbcType=DECIMAL},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      stock_remark = #{stockRemark,jdbcType=LONGVARCHAR}
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    update szy_stock_goods_6
+    set store_id = #{storeId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      min_number_warn = #{minNumberWarn,jdbcType=DOUBLE},
+      max_number_warn = #{maxNumberWarn,jdbcType=DOUBLE},
+      goods_number = #{goodsNumber,jdbcType=DOUBLE},
+      first_goods_number = #{firstGoodsNumber,jdbcType=DOUBLE},
+      unit_cost = #{unitCost,jdbcType=DECIMAL},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      admin_id = #{adminId,jdbcType=INTEGER}
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+   <update id="updateStoreNum" parameterType="com.pugutang.spring.boot.entity.SzyStockGoods6">
+    update szy_stock_goods_6
+    set 
+      goods_number = goods_number+#{goodsNumber}
+    where store_id = #{storeId}
+      and sku_id = #{skuId}
+      <!--  and (goods_number+#{goodsNumber}) &gt; -1-->
+  </update>
+  <select id="storeIdByPurchaseCode" parameterType="string" resultType="int">
+  	select ss.store_id from szy_store ss, pgt_outbound_notice pon
+  	where ss.store_sn = pon.store_sn and pon.purchase_code=#{purchaseCode}
+  </select>
+</mapper>

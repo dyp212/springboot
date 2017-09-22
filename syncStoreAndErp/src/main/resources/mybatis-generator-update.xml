@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration  
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    
+    <!-- 商城配置文件 -->
+    <properties resource="application.properties"/>
+    <context id="oldDB2Tables"    targetRuntime="MyBatis3">
+     <plugin type="com.pugutang.mybatis.page.plugin.MySqlLimitPlugin"/>  
+        <commentGenerator>  
+            <property name="suppressDate" value="true"/>  
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>  
+        <!--数据库链接地址账号密码-->  
+        <jdbcConnection driverClass="${spring.datasource.new.driver-class-name}" 
+	        connectionURL="${spring.datasource.new.url}" 
+	        userId="${spring.datasource.new.username}" password="${spring.datasource.new.password}">  
+        </jdbcConnection>  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>  
+        <!--生成Model类存放位置-->  
+        <javaModelGenerator targetPackage="com.pugutang.spring.boot.entity" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="false"/>  
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>  
+        <!--生成映射文件存放位置-->  
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">  
+            <property name="enableSubPackages" value="false"/>  
+        </sqlMapGenerator>   
+        <!--生成Dao类存放位置-->  
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码  
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象  
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象  
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口  
+        --> 
+        <!-- 老商城生成路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.pugutang.spring.boot.dao.newDao" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="false"/>  
+        </javaClientGenerator>  
+        
+        <!--生成对应表及类名--> 
+	     <!--  <table tableName="pgt_inbound_notice" 
+	        domainObjectName="PgtInboundNotice" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="pgt_inbound_notice_detail" 
+	        domainObjectName="PgtInboundNoticeDetails" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table> 
+	     <table tableName="pgt_outbound_notice" 
+	        domainObjectName="PgtOutboundNotice" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="pgt_outbound_notice_detail" 
+	        domainObjectName="PgtOutboundNoticeDetail" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_store"
+	        domainObjectName="SzyStore" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="szy_stock_goods_6"
+	        domainObjectName="SzyStockGoods6" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>	     
+	     <table tableName="pgt_inbound_notice" 
+	        domainObjectName="PgtInboundNotice" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>-->	
+	    <!--  <table tableName="pgt_order" 
+	        domainObjectName="PgtOrder" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>
+	     <table tableName="pgt_order_goods" 
+	        domainObjectName="PgtOrderGoods" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table> 
+	     <table tableName="pgt_inbound_notice_stock_batch" 
+	        domainObjectName="PgtInboundNoticeStockBatch" 
+	        enableCountByExample="true" 
+	        enableUpdateByExample="true" 
+	        enableDeleteByExample="true" 
+	        enableSelectByExample="true" 
+	        selectByExampleQueryId="true">
+	     </table>	 -->     
+	         
+    </context> 
+</generatorConfiguration>  
