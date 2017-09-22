@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pugutang.spring.boot.dao.newDao.PgtInboundNoticeDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.pugutang.spring.boot.entity.PgtInboundNoticeDetails">
+    <id column="notice_detail_id" jdbcType="BIGINT" property="noticeDetailId" />
+    <result column="inbound_code" jdbcType="VARCHAR" property="inboundCode" />
+    <result column="purchase_code" jdbcType="VARCHAR" property="purchaseCode" />
+    <result column="purchase_detail_id" jdbcType="BIGINT" property="purchaseDetailId" />
+    <result column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="sku_encode" jdbcType="VARCHAR" property="skuEncode" />
+    <result column="spec" jdbcType="VARCHAR" property="spec" />
+    <result column="pre_arrival_quantity" jdbcType="INTEGER" property="preArrivalQuantity" />
+    <result column="good_quantity" jdbcType="INTEGER" property="goodQuantity" />
+    <result column="bad_quantity" jdbcType="INTEGER" property="badQuantity" />
+    <result column="bad_deal_type" jdbcType="TINYINT" property="badDealType" />
+    <result column="quality_status" jdbcType="TINYINT" property="qualityStatus" />
+    <result column="quality_time" jdbcType="TIMESTAMP" property="qualityTime" />
+    <result column="quality_id" jdbcType="BIGINT" property="qualityId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="createby" jdbcType="VARCHAR" property="createby" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="batch_code" jdbcType="VARCHAR" property="batchCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    notice_detail_id, inbound_code, purchase_code, purchase_detail_id, sku_id, sku_name, 
+    sku_encode, spec, pre_arrival_quantity, good_quantity, bad_quantity, bad_deal_type, 
+    quality_status, quality_time, quality_id, status, createby, create_time, updateby, 
+    update_time, batch_code
+  </sql>
+  <select id="selectByExample" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetailsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from pgt_inbound_notice_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pgt_inbound_notice_detail
+    where notice_detail_id = #{noticeDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pgt_inbound_notice_detail
+    where notice_detail_id = #{noticeDetailId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetailsExample">
+    delete from pgt_inbound_notice_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetails">
+    insert into pgt_inbound_notice_detail (notice_detail_id, inbound_code, purchase_code, 
+      purchase_detail_id, sku_id, sku_name, 
+      sku_encode, spec, pre_arrival_quantity, 
+      good_quantity, bad_quantity, bad_deal_type, 
+      quality_status, quality_time, quality_id, 
+      status, createby, create_time, 
+      updateby, update_time, batch_code
+      )
+    values (#{noticeDetailId,jdbcType=BIGINT}, #{inboundCode,jdbcType=VARCHAR}, #{purchaseCode,jdbcType=VARCHAR}, 
+      #{purchaseDetailId,jdbcType=BIGINT}, #{skuId,jdbcType=INTEGER}, #{skuName,jdbcType=VARCHAR}, 
+      #{skuEncode,jdbcType=VARCHAR}, #{spec,jdbcType=VARCHAR}, #{preArrivalQuantity,jdbcType=INTEGER}, 
+      #{goodQuantity,jdbcType=INTEGER}, #{badQuantity,jdbcType=INTEGER}, #{badDealType,jdbcType=TINYINT}, 
+      #{qualityStatus,jdbcType=TINYINT}, #{qualityTime,jdbcType=TIMESTAMP}, #{qualityId,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}, #{createby,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateby,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{batchCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetails">
+    insert into pgt_inbound_notice_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="noticeDetailId != null">
+        notice_detail_id,
+      </if>
+      <if test="inboundCode != null">
+        inbound_code,
+      </if>
+      <if test="purchaseCode != null">
+        purchase_code,
+      </if>
+      <if test="purchaseDetailId != null">
+        purchase_detail_id,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="skuEncode != null">
+        sku_encode,
+      </if>
+      <if test="spec != null">
+        spec,
+      </if>
+      <if test="preArrivalQuantity != null">
+        pre_arrival_quantity,
+      </if>
+      <if test="goodQuantity != null">
+        good_quantity,
+      </if>
+      <if test="badQuantity != null">
+        bad_quantity,
+      </if>
+      <if test="badDealType != null">
+        bad_deal_type,
+      </if>
+      <if test="qualityStatus != null">
+        quality_status,
+      </if>
+      <if test="qualityTime != null">
+        quality_time,
+      </if>
+      <if test="qualityId != null">
+        quality_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createby != null">
+        createby,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="batchCode != null">
+        batch_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="noticeDetailId != null">
+        #{noticeDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundCode != null">
+        #{inboundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseCode != null">
+        #{purchaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDetailId != null">
+        #{purchaseDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuEncode != null">
+        #{skuEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null">
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="preArrivalQuantity != null">
+        #{preArrivalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="goodQuantity != null">
+        #{goodQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="badQuantity != null">
+        #{badQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="badDealType != null">
+        #{badDealType,jdbcType=TINYINT},
+      </if>
+      <if test="qualityStatus != null">
+        #{qualityStatus,jdbcType=TINYINT},
+      </if>
+      <if test="qualityTime != null">
+        #{qualityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qualityId != null">
+        #{qualityId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchCode != null">
+        #{batchCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetailsExample" resultType="java.lang.Long">
+    select count(*) from pgt_inbound_notice_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pgt_inbound_notice_detail
+    <set>
+      <if test="record.noticeDetailId != null">
+        notice_detail_id = #{record.noticeDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.inboundCode != null">
+        inbound_code = #{record.inboundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseCode != null">
+        purchase_code = #{record.purchaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseDetailId != null">
+        purchase_detail_id = #{record.purchaseDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.skuId != null">
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuName != null">
+        sku_name = #{record.skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuEncode != null">
+        sku_encode = #{record.skuEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spec != null">
+        spec = #{record.spec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preArrivalQuantity != null">
+        pre_arrival_quantity = #{record.preArrivalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodQuantity != null">
+        good_quantity = #{record.goodQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.badQuantity != null">
+        bad_quantity = #{record.badQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.badDealType != null">
+        bad_deal_type = #{record.badDealType,jdbcType=TINYINT},
+      </if>
+      <if test="record.qualityStatus != null">
+        quality_status = #{record.qualityStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.qualityTime != null">
+        quality_time = #{record.qualityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.qualityId != null">
+        quality_id = #{record.qualityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createby != null">
+        createby = #{record.createby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateby != null">
+        updateby = #{record.updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.batchCode != null">
+        batch_code = #{record.batchCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pgt_inbound_notice_detail
+    set notice_detail_id = #{record.noticeDetailId,jdbcType=BIGINT},
+      inbound_code = #{record.inboundCode,jdbcType=VARCHAR},
+      purchase_code = #{record.purchaseCode,jdbcType=VARCHAR},
+      purchase_detail_id = #{record.purchaseDetailId,jdbcType=BIGINT},
+      sku_id = #{record.skuId,jdbcType=INTEGER},
+      sku_name = #{record.skuName,jdbcType=VARCHAR},
+      sku_encode = #{record.skuEncode,jdbcType=VARCHAR},
+      spec = #{record.spec,jdbcType=VARCHAR},
+      pre_arrival_quantity = #{record.preArrivalQuantity,jdbcType=INTEGER},
+      good_quantity = #{record.goodQuantity,jdbcType=INTEGER},
+      bad_quantity = #{record.badQuantity,jdbcType=INTEGER},
+      bad_deal_type = #{record.badDealType,jdbcType=TINYINT},
+      quality_status = #{record.qualityStatus,jdbcType=TINYINT},
+      quality_time = #{record.qualityTime,jdbcType=TIMESTAMP},
+      quality_id = #{record.qualityId,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      createby = #{record.createby,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      updateby = #{record.updateby,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      batch_code = #{record.batchCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetails">
+    update pgt_inbound_notice_detail
+    <set>
+      <if test="inboundCode != null">
+        inbound_code = #{inboundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseCode != null">
+        purchase_code = #{purchaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDetailId != null">
+        purchase_detail_id = #{purchaseDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuEncode != null">
+        sku_encode = #{skuEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null">
+        spec = #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="preArrivalQuantity != null">
+        pre_arrival_quantity = #{preArrivalQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="goodQuantity != null">
+        good_quantity = #{goodQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="badQuantity != null">
+        bad_quantity = #{badQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="badDealType != null">
+        bad_deal_type = #{badDealType,jdbcType=TINYINT},
+      </if>
+      <if test="qualityStatus != null">
+        quality_status = #{qualityStatus,jdbcType=TINYINT},
+      </if>
+      <if test="qualityTime != null">
+        quality_time = #{qualityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qualityId != null">
+        quality_id = #{qualityId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createby != null">
+        createby = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchCode != null">
+        batch_code = #{batchCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where notice_detail_id = #{noticeDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pugutang.spring.boot.entity.PgtInboundNoticeDetails">
+    update pgt_inbound_notice_detail
+    set inbound_code = #{inboundCode,jdbcType=VARCHAR},
+      purchase_code = #{purchaseCode,jdbcType=VARCHAR},
+      purchase_detail_id = #{purchaseDetailId,jdbcType=BIGINT},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      sku_encode = #{skuEncode,jdbcType=VARCHAR},
+      spec = #{spec,jdbcType=VARCHAR},
+      pre_arrival_quantity = #{preArrivalQuantity,jdbcType=INTEGER},
+      good_quantity = #{goodQuantity,jdbcType=INTEGER},
+      bad_quantity = #{badQuantity,jdbcType=INTEGER},
+      bad_deal_type = #{badDealType,jdbcType=TINYINT},
+      quality_status = #{qualityStatus,jdbcType=TINYINT},
+      quality_time = #{qualityTime,jdbcType=TIMESTAMP},
+      quality_id = #{qualityId,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      createby = #{createby,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      batch_code = #{batchCode,jdbcType=VARCHAR}
+    where notice_detail_id = #{noticeDetailId,jdbcType=BIGINT}
+  </update>
+</mapper>
